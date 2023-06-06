@@ -64,7 +64,18 @@ function Sidebar() {
 
   return (
     <div>
-       <div className='bg-[#111111] text-white text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
+      <div
+        onClick={() => setOpen(false)}
+        className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-black/50 ${
+          open ? "block" : "hidden"
+        } `}
+      ></div>
+       <motion.div 
+       ref={sidebarRef}
+       variants={Nav_animation}
+       initial={{ x: isTabletMid ? -250 : 0 }}
+       animate={open ? "open" : "closed"}
+        className='bg-[#111111] text-white text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
             overflow-hidden md:relative fixed
          h-screen '>
           <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
@@ -97,7 +108,7 @@ function Sidebar() {
               </li>
             </ul>
           </div>
-       </div>
+       </motion.div>
     </div>
   )
 }
